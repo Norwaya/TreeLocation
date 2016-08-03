@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -67,6 +68,7 @@ public class MainActivity extends BaseActivity {
         initRecycler();
         initial();
         myRresenter.showUser();
+        myRresenter.showData();
     }
 
 
@@ -74,16 +76,14 @@ public class MainActivity extends BaseActivity {
 
     private void initRecycler() {
         myRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-        myRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        myRecyclerView.setLayoutManager(new GridLayoutManager(this,4));
         adapter = new RecyclerAdapter(this);
         myRecyclerView.setAdapter(adapter);
-        ArrayList<String> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            list.add("item_" + i);
-        }
+
+    }
+    public void showData(ArrayList list){
         adapter.setList(list);
     }
-
     ActionBarDrawerToggle mDrawerToggle;
     String mTitle, mDrawerTitle;
 
