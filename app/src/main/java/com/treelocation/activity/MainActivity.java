@@ -5,15 +5,17 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.treelocation.activity.adapter.RecyclerAdapter;
 import com.treelocation.activity.di.ActivityComponent;
 import com.treelocation.activity.di.ActivityModule;
 import com.treelocation.activity.di.AppComponent;
@@ -51,7 +53,7 @@ public class MainActivity extends BaseActivity {
     //    ActivityComponent component;
     ActionBar actionBar;
 //    @BindView(R.id.my_recycler_view)
-//    RecyclerView myRecyclerView;
+    RecyclerView myRecyclerView;
 
     private String[] mPlanetTitles;
     private DrawerLayout mDrawerLayout;
@@ -68,17 +70,18 @@ public class MainActivity extends BaseActivity {
     }
 
 
-//    RecyclerAdapter adapter;
+    RecyclerAdapter adapter;
 
     private void initRecycler() {
-//        myRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        adapter = new RecyclerAdapter(this);
-//        myRecyclerView.setAdapter(adapter);
-//        ArrayList<String> list = new ArrayList<>();
-//        for (int i = 0; i < 10; i++) {
-//            list.add("item_" + i);
-//        }
-//        adapter.setList(list);
+        myRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        myRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new RecyclerAdapter(this);
+        myRecyclerView.setAdapter(adapter);
+        ArrayList<String> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            list.add("item_" + i);
+        }
+        adapter.setList(list);
     }
 
     ActionBarDrawerToggle mDrawerToggle;
